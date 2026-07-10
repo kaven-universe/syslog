@@ -1,4 +1,4 @@
-# syslog
+# [syslog](https://github.com/kaven-universe/syslog)
 
 A lightweight server for receiving UDP syslog messages and optionally forwarding them to other destinations.
 
@@ -6,7 +6,25 @@ A lightweight server for receiving UDP syslog messages and optionally forwarding
 
 [kavenzero/syslog](https://hub.docker.com/r/kavenzero/syslog/tags)
 
+```sh
+# pull the image
+docker pull kavenzero/syslog
+
+# run the container and expose UDP port 514
+# map host directories for configuration and logs
+docker run -d --name syslog-server \
+  -p 514:514/udp \
+  -v "$(pwd)/config:/App/Configuration" \
+  -v "$(pwd)/logs:/App/Log" \
+  kavenzero/syslog
+
+# verify the container is running
+docker ps --filter "name=syslog-server"
+```
+
 ## Configuration
+
+> If `Syslog.kcf` is missing, the server will generate a default configuration file at startup.
 
 `/App/Configuration/Syslog.kcf`
 
@@ -24,10 +42,6 @@ A lightweight server for receiving UDP syslog messages and optionally forwarding
       "TargetAddress": "127.0.0.1",
       "TargetPort": 514
     }
-  ],
-  "ExecutingAssemblyVersion": "2.6.7.0",
-  "TypeAssemblyQualifiedName": "Kaven.Standard.SyslogServerConfig, Kaven.Standard, Version=2.6.7.0, Culture=neutral, PublicKeyToken=null",
-  "CreatedAt": "2026-01-01T23:09:15.3882316Z",
-  "LastModifiedAt": "2026-01-02T00:24:51.3782583Z"
+  ]
 }
 ```
