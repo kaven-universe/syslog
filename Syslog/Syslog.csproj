@@ -6,6 +6,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Kaven.Standard" Version="2.7.4" />
+    <PackageReference Include="Kaven.Standard" Version="2.7.7" />
   </ItemGroup>
 </Project>
